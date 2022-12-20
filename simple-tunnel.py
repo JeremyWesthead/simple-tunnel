@@ -32,7 +32,20 @@ WantedBy=default.target'''
 def list_tunnels():
     '''Print the names and statuses of the simple-tunnel services
     '''
-    os.system("systemctl --user list-units | grep simple-tunnel | cut -d' ' -f3")
+    tunnels = os.listdir(os.path.expanduser("~/.config/systemd/user"))
+    tunnels = [tunnel for tunnel in tunnels if "simple-tunnel" in tunnel]
+
+    #Get the status of each tunnel
+    for service in tunnels:
+        ret_code = os.system(f"systemctl --user --quiet is-active {service}")
+        if ret_code == 0:
+            #Add ANSI colours for green/red appropriately
+            status = "\033[1;32mis running.\033[0m"
+        else:
+            status = "\033[1;31mhas failed.\033[0m"
+        print(service.split(".")[0].replace("simple-tunnel-",""), status)
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
