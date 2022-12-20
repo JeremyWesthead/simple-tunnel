@@ -25,8 +25,7 @@ def create(options):
             check = str(input("A service with this name already exists! Overwrite? [Y/N] "))
             if check.upper() != "Y":
                 return
-            else:
-                name = options.name
+        name = options.name
 
     template = f'''[Unit]
 Description=SSH tunnel for {name}
