@@ -23,10 +23,23 @@ python simple-tunnel.py --name test-tunnel --local_port 6000 --ext_ip 10.8.12.4 
 python simple-tunnel.py --list
 ```
 
+## Stop a running tunnel service
+```
+python simple-tunnel.py --stop <tunnel name>
+```
+
+## Start a tunnel service which already exists
+```
+python simple-tunnel.py --start <tunnel name>
+```
+
+## Delete a tunnel service
+```
+python simple-tunnel.py --delete <tunnel name>
+```
+
 ## Possible future additions
-* Check for overwriting
 * Added error message propagation
-* Add management of tunnels e.g deletion
 * GUI
     * Tray icon
     * Notifications on fail
